@@ -3,6 +3,9 @@ const alunoModel = require("../models/AlunoModel");
 
 async function listarAtendimentos() {
     const atendimentos = await atendimentoModel.listarAtendimentos();
+    if (atendimentos.length === 0) {
+        throw new Error("Não existe uma lista de atendimento ainda")
+    }
     return atendimentos;  
 }
 
