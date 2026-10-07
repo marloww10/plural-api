@@ -1,7 +1,7 @@
 const db = require("../db");
 
 async function listarAtendimentos() {
-    const result = await db.query("select * from atendimento")
+    const result = await db.query("select atendimento.id_atendimento, atendimento.data_atendimento, atendimento.descricao, aluno.id_aluno, aluno.nome as nome_aluno, responsavel.id_responsavel, responsavel.nome as nome_responsavel from atendimento join aluno on atendimento.id_aluno = aluno.id_aluno join responsavel on atendimento.id_responsavel = responsavel.id_responsavel order by atendimento.data_atendimento");
     return result.rows;
 }
 
