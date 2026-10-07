@@ -26,9 +26,15 @@ async function deletarResponsavel(id_responsavel) {
     return result.rowCount;
 }
 
+async function buscarResponsavel(termo) {
+    const result = await db.query(" select * from  responsavel where nome ilike $1", [`%${termo}%`]);
+    return result.rows;
+}
+
 module.exports = {
     listarResponsaveis,
     cadastrarResponsavel,
     deletarResponsavel,
-    atualizarResponsavel
+    atualizarResponsavel,
+    buscarResponsavel
 }

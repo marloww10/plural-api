@@ -48,9 +48,21 @@ async function atualizarResponsavel(req, res) {
     }
 }
 
+async function buscarResponsavel(req, res) {
+    try {
+        const responsavel = await responsavelService.buscarResponsavel(req.query.termo);
+        return res.status(200).json(responsavel);
+    } catch (error) {
+        return res.status(500).json({
+            mensagem: error.message
+        });
+    }
+}
+
 module.exports = {
     atualizarResponsavel,
     cadastrarResponsavel,
     deletarResponsavel,
-    listarResponsaveis
+    listarResponsaveis,
+    buscarResponsavel
 }

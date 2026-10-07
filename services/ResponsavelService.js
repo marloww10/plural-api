@@ -26,9 +26,17 @@ async function atualizarResponsavel(responsavel, id_responsavel) {
     return await responsavelModel.atualizarResponsavel(responsavel, id_responsavel);
 }
 
+async function buscarResponsavel(termo) {
+    if (!termo) {
+        throw new Error("envie um termo para pesquisa");
+    }
+    return await responsavelModel.buscarResponsavel(termo);
+}
+
 module.exports = {
     listarResponsaveis,
     atualizarResponsavel,
     cadastrarResponsavel,
-    deletarResponsavel
+    deletarResponsavel,
+    buscarResponsavel
 }
