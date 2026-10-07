@@ -37,7 +37,7 @@ async function cadastrarAtendimento(atendimento) {
     return await atendimentoModel.cadastrarAtendimento(atendimento);
 }
 
-async function atualizarAtendimento(id_atendimento, data_atendimento) {
+async function atualizarAtendimento(data_atendimento, id_atendimento) {
     if (!id_atendimento) {
         throw new Error("preencha o id do atendimento");
     }
