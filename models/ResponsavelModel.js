@@ -6,7 +6,7 @@ async function listarResponsaveis() {
 }
 
 async function cadastrarResponsavel(responsavel) {
-    const sql = "insert into responsavel(nome, cpf, telefone, email) values ($1,$2,$3,$4)";
+    const sql = "insert into responsavel(nome, cpf, telefone, email) values ($1,$2,$3,$4) returning *";
     const value = [responsavel.nome, responsavel.cpf, responsavel.telefone, responsavel.email];
     const result = await db.query(sql, value);
     return result.rows;

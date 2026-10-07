@@ -25,7 +25,11 @@ async function cadastrarResponsavel(req, res) {
 async function deletarResponsavel(req, res) {
     try {
         const responsavel = await responsavelService.deletarResponsavel(req.params.id);
-        return res.status(201).json(responsavel);
+        if (!responsavel) {
+            return res.sendStatus(404);
+        }
+
+        return res.sendStatus(204);
     } catch (error) {
         return res.status(400).json({
             mensagem: error.message
@@ -36,7 +40,7 @@ async function deletarResponsavel(req, res) {
 async function atualizarResponsavel(req, res) {
     try {
         const responsavel = await responsavelService.atualizarResponsavel(req.body,req.params.id);
-        return res.status(201).json(responsavel);
+        return res.status(200).json(responsavel);
     } catch (error) {
         return res.status(400).json({
             mensagem: error.message

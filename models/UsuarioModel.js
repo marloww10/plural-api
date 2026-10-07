@@ -1,20 +1,20 @@
 const db = require('../db');
 
 async function listarUsuarios() {
-    const result = await db.query('select * from usuario');
+    const result = await db.query('select id_usuario, nome, email from usuario');
     return result.rows;
 }
 
 async function listarUsuarioId(id_usuario) {
-    const result = await db.query('select * from usuario where id_usuario = $1', [id_usuario]);
+    const result = await db.query('select id_usuario, nome, email from usuario where id_usuario = $1', [id_usuario]);
     return result.rows[0];
 }
 
 async function cadastrarUsuario(usuario) {
-    const sql = 'insert into usuario(nome, email, senha) values ($1, $2, $3)';
+    const sql = 'insert into usuario(nome, email, senha) values ($1, $2, $3) returning id_usuario, nome, email';
     const value = [usuario.nome, usuario.email, usuario.senha];
     const result = await db.query(sql, value);
-    return result.rows;
+    return result.rows[0];
 }
 
 async function buscarUsuarioEmail(email) {
