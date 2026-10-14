@@ -57,7 +57,7 @@ async function deletarAtendimento(req, res) {
 
 async function atualizarAtendimento(req, res) {
     try {
-        const atualizarAtendimento = await atendimentoService.atualizarAtendimento(req.params.id, req.body.data_atendimento);
+        const atualizarAtendimento = await atendimentoService.atualizarAtendimento(req.body.data_atendimento, req.params.id);
         if (!atualizarAtendimento) {
             return res.status(404).json({
                 mensagem: "atendimento não encontrado"
